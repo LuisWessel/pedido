@@ -18,8 +18,10 @@ public class Nota {
     private String numero;
 
     private Date dataCriacao;
+
     @ManyToOne
     private Cliente cliente;
+
     @OneToMany(mappedBy="nota",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Item> itens;
 
