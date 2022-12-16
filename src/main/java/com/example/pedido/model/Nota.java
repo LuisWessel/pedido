@@ -1,11 +1,15 @@
 package com.example.pedido.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 @Entity
 @Table(name="TB_NOTA")
+@JsonIdentityInfo (generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class Nota {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -15,8 +19,8 @@ public class Nota {
 
     private Date dataCriacao;
     @ManyToOne
-    private Cliente nome;
-    @OneToMany(mappedBy="nota")
+    private Cliente cliente;
+    @OneToMany(mappedBy="nota",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Item> itens;
 
     public Long getId() {
@@ -43,12 +47,12 @@ public class Nota {
         this.dataCriacao = dataCriacao;
     }
 
-    public Cliente getNome() {
-        return nome;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setNome(Cliente nome) {
-        this.nome = nome;
+    public void setCliente(Cliente nome) {
+        this.cliente = nome;
     }
 
     public List<Item> getItens() {

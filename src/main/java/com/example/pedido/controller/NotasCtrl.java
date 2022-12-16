@@ -31,7 +31,7 @@ public class NotasCtrl {
     }
 
     @PutMapping
-    public Nota atualizaNotao(@RequestBody Nota nota) {
+    public Nota atualizaNota(@RequestBody Nota nota) {
         return notaRepository.save(nota);
     }
 
