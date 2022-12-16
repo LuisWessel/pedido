@@ -25,6 +25,8 @@ public class Nota {
     @OneToMany(mappedBy="nota",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Item> itens;
 
+
+
     public Long getId() {
         return id;
     }

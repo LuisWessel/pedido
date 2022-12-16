@@ -8,13 +8,22 @@ public class Item {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Nota nota;
+
     private Integer numero;
+
     @ManyToOne
     private Produto produto;
+
     private BigDecimal quantidade;
+
     private BigDecimal valortotal;
+
+
+
+
 
     public Long getId() {
         return id;
