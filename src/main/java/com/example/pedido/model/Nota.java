@@ -29,6 +29,8 @@ public class Nota {
     @JsonIgnore
     private List<Item> itens;
 
+
+
     public Long getId() {
         return id;
     }
