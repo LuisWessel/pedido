@@ -1,15 +1,13 @@
 package com.example.pedido.model;
 
-import org.hibernate.annotations.NotFound;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="TB_CLIENTE")
 public class Cliente {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id // Anotação id
+    @GeneratedValue(strategy= GenerationType.IDENTITY) //Geração do id a responsabilidade do banco
     private Long id;
 
     private String nome;
@@ -17,7 +15,7 @@ public class Cliente {
     private String cod;
 
     public Long getId() {
-        return id;
+        return id + 1 ;
     }
 
     public void setId(Long id) {
@@ -39,7 +37,6 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 
 
 }

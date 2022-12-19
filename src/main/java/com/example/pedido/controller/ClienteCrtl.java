@@ -12,19 +12,19 @@ import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-@RestController
+@RestController // Classe API REST e vai receber a requisições http.
 @RequestMapping("/cliente")
 public class ClienteCrtl {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping
+    @GetMapping // Método que lista todos os clientes salvos no Banco de Dados.
     public List<Cliente> lista(){
         List<Cliente> clientes = clienteRepository.findAll();
         return clientes;
     }
 
-    @PostMapping
+    @PostMapping // Recebe um produto para salvar - O Produto vem no corpo da requisição. @RequestBody
     public ResponseEntity<Cliente> cadastrar(@RequestBody @Validated Cliente cliente, UriComponentsBuilder uriBuilder){
         cliente = clienteRepository.save(cliente);
         URI uri = uriBuilder.path("/Notas/{id}").buildAndExpand(cliente.getId()).toUri();

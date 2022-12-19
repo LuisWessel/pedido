@@ -2,27 +2,31 @@ package com.example.pedido.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 @Entity
 @Table(name="TB_NOTA")
-@JsonIdentityInfo (generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
+/*@JsonIdentityInfo (generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")*/
 public class Nota {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id //Anotação para ID
+    @GeneratedValue(strategy= GenerationType.IDENTITY) //IDENTITY Para Gerar Valor Id Automático
     private Long id;
 
     private String numero;
 
+    @DateTimeFormat (pattern = "dd/MM/yyyy")
     private Date dataCriacao;
 
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy="nota",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="nota", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Item> itens;
 
     public Long getId() {
